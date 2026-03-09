@@ -1,4 +1,4 @@
-'''
+```
 
 wids-global-datathon-2026/
 ├── src/                   # reusable code (data, features, model)
@@ -11,5 +11,5 @@ wids-global-datathon-2026/
 ├── requirements.txt
 └── README.md
 
-'''
+```
 
