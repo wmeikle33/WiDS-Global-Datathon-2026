@@ -1,3 +1,5 @@
+'''
+
 wids-global-datathon-2026/
 ├── src/                   # reusable code (data, features, model)
 ├── scripts/               # CLI entrypoints: train/predict
@@ -8,3 +10,6 @@ wids-global-datathon-2026/
 ├── tests/                 # add unit tests if needed
 ├── requirements.txt
 └── README.md
+
+'''
+
