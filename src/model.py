@@ -1,3 +1,5 @@
+from get_data import get_data
+
 def xgb_pipeline:
 		xgb_params = {
 	    'n_estimators': 200,
