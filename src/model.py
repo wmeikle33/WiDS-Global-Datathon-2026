@@ -28,17 +28,12 @@ from .metrics import ctr_metrics
 
 def build_pipeline(
     X: pd.DataFrame,
-    model_name: str = "logreg",
+    model_name: str = "xgb",
     random_state: int = 42,
 ) -> Pipeline:
     preprocessor = auto_preprocess(X)
 
-    if model_name == "logreg":
-        classifier = LogisticRegression(
-            max_iter=200,
-            random_state=random_state,
-        )
-    elif model_name == "xgb":
+    if model_name == "xgb":
         if XGBClassifier is None:
             raise ImportError(
                 "XGBoost is not installed. Run: pip install -e '.[xgb]'"
