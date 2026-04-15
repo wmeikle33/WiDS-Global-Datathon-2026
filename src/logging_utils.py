@@ -6,12 +6,12 @@ from typing import Optional
 
 def setup_logging(
     log_dir: Path = Path("logs"),
-    log_name: str = "ctr_prediction.log",
+    log_name: str = "WiDS-Global-Datathon.log",
     console_level: int = logging.INFO,
     file_level: int = logging.DEBUG,
 ) -> None:
     """
-    Set up logging for the CTR project.
+    Set up logging for the WiDS-Global-Datathon project.
 
     - Logs to console (INFO+ by default)
     - Logs to a rotating file (DEBUG+ by default, up to ~5 MB * 3)
