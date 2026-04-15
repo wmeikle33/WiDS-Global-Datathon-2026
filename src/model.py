@@ -1,19 +1,3 @@
-from get_data import get_data
-
-def xgb_pipeline:
-		xgb_params = {
-	    'n_estimators': 200,
-	    'max_depth': 3,
-	    'learning_rate': 0.05,
-	    'random_state': 42
-	}
-
-	base_xgb = xgb.XGBClassifier(**xgb_params)
-
-	calibrated_xgb = CalibratedClassifierCV(base_xgb, cv=5)
-
-	Model = MultiOutputClassifier(calibrated_xgb)
-
 from __future__ import annotations
 from pathlib import Path
 import pandas as pd
@@ -83,18 +67,6 @@ def train_eval_save(
     pipe.fit(X_train, y_train)
 
     metrics: dict[str, float] = {}
-
-    if hasattr(pipe, "predict_proba"):
-        y_prob = pipe.predict_proba(X_val)
-        if y.nunique() == 2:
-            pos_prob = y_prob[:, 1]
-            metrics = ctr_metrics(y_val, pos_prob)
-        else:
-            metrics = {"log_loss": float(log_loss(y_val, y_prob))}
-    else:
-        raise ValueError(
-            "Pipeline does not support predict_proba(), required for CTR metrics."
-        )
 
     Path(model_path).parent.mkdir(parents=True, exist_ok=True)
     dump(pipe, model_path)
