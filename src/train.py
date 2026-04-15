@@ -5,7 +5,7 @@ from .data import load_csv
 from .model import train_eval_save
 
 PROJECT_ROOT = Path(__file__).resolve().parents[2]
-DEFAULT_DATA_PATH = PROJECT_ROOT / "data" / "raw" / "train.gz"
+DEFAULT_DATA_PATH = PROJECT_ROOT / "train" / "train.csv"
 DEFAULT_MODEL_PATH = PROJECT_ROOT / "models" / "model.joblib"
 
 
