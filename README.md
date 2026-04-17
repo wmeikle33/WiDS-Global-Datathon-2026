@@ -6,12 +6,16 @@ This competition turns that operational need into a survival analysis challenge.
 
 ## Quickstart
 
+```
+
 git clone https://github.com/wmeikle33/Click-Through-Rate-Prediction.git
 cd Click-Through-Rate-Prediction
 python -m venv .venv
 source .venv/bin/activate
 pip install -e ".[data]"
 python scripts/download_data.py
+
+```
 
 ## Summary 
 
