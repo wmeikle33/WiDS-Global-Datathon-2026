@@ -8,7 +8,6 @@ PROJECT_ROOT = Path(__file__).resolve().parents[2]
 DEFAULT_DATA_PATH = PROJECT_ROOT / "train" / "train.csv"
 DEFAULT_MODEL_PATH = PROJECT_ROOT / "models" / "model.joblib"
 
-
 def parse_args():
     ap = argparse.ArgumentParser()
     ap.add_argument(
@@ -33,10 +32,7 @@ def main():
     csv_path = Path(args.csv).expanduser().resolve()
     model_path = Path(args.model_out)
 
-    df = load_csv(csv_path, nrows=args.nrows)
-
-    if args.label not in df.columns:
-        raise ValueError(f"Label column '{args.label}' not found in {csv_path}")
+    df = load_csv(csv_paths)
 
     metrics = train_eval_save(
         df=df,
