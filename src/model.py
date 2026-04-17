@@ -7,7 +7,7 @@ from sklearn.metrics import log_loss, roc_auc_score
 from sklearn.model_selection import train_test_split
 from sklearn.pipeline import Pipeline
 from .features import auto_preprocess, split_features_label
-from .metrics import ctr_metrics
+from .metrics import WiDs_metrics
 
 
 def build_pipeline(
