@@ -20,7 +20,6 @@ def build_pipeline(
     cal_models = {}
     val_score = {}
     
-    
         model = lgb.LGBMClassifier(
             n_estimators=80,
             learning_rate=0.05,
@@ -70,7 +69,6 @@ def train_eval_save(
     random_state: int = 42,
     test_size: float = 0.2,
 ) -> dict[str, float]:
-    X, y = split_features_label(df, label)
 
     pipe = build_pipeline(X, model_name=model_name, random_state=random_state)
 
@@ -78,6 +76,7 @@ def train_eval_save(
 
     for h in horizons:
             print(f"\nTraining for {h}h Horizon")
+            X, y = split_features_label(df, label)
             
             df_h = df_train[df_train[f'y_{h}'].notna()].copy()
             
