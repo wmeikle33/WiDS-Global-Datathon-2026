@@ -24,7 +24,6 @@ def parse_args():
     )
     ap.add_argument("--test-size", type=float, default=0.2, help="Validation fraction")
     ap.add_argument("--random-state", type=int, default=42)
-    ap.add_argument("--nrows", type=int, default=200000, help="Rows to load for training")
     return ap.parse_args()
 
 
