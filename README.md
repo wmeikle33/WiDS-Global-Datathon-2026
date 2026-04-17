@@ -4,6 +4,8 @@ When a wildfire ignites, emergency managers and responders must decide which com
 
 This competition turns that operational need into a survival analysis challenge. You will generate calibrated probability forecasts across multiple time horizons to support real-world decisions.
 
+## Quickstart
+
 ## Summary 
 
 ```
