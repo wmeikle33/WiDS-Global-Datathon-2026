@@ -1,1 +1,4 @@
-from .datathon/train import main
+from datathon.train import main
+
+if __name__ == "__main__":
+    main()
