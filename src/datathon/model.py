@@ -76,7 +76,7 @@ def train_eval_save(
 
     for h in horizons:
             print(f"\nTraining for {h}h Horizon")
-            X, y = split_features_label(df, label)
+            X, y = split_features_label(df, h)
             
             df_h = df_train[df_train[f'y_{h}'].notna()].copy()
             
