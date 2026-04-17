@@ -20,25 +20,6 @@ def build_pipeline(
     cal_models = {}
     val_score = {}
     
-    for h in horizons:
-        print(f"\nTraining for {h}h Horizon")
-        
-        df_h = df_train[df_train[f'y_{h}'].notna()].copy()
-        
-        if len(df_h) < 30:
-            print(f"  Skipping horizon {h}h — only {len(df_h)} samples available")
-            continue
-    
-        X = df_h[features]
-        y = df_h[f'y_{h}']
-        
-        if y.nunique() < 2:
-            print(f"  Skipping horizon {h}h — only one class in target")
-            continue
-    
-        X_df_train, X_val, y_df_train, y_val = train_test_split(
-            X, y, test_size=0.2, random_state=42, stratify=y
-        )
     
         model = lgb.LGBMClassifier(
             n_estimators=80,
@@ -94,13 +75,26 @@ def train_eval_save(
     pipe = build_pipeline(X, model_name=model_name, random_state=random_state)
 
     stratify = y if y.nunique() <= 20 else None
-    X_train, X_val, y_train, y_val = train_test_split(
-        X,
-        y,
-        test_size=test_size,
-        random_state=random_state,
-        stratify=stratify,
-    )
+
+    for h in horizons:
+            print(f"\nTraining for {h}h Horizon")
+            
+            df_h = df_train[df_train[f'y_{h}'].notna()].copy()
+            
+            if len(df_h) < 30:
+                print(f"  Skipping horizon {h}h — only {len(df_h)} samples available")
+                continue
+        
+            X = df_h[features]
+            y = df_h[f'y_{h}']
+            
+            if y.nunique() < 2:
+                print(f"  Skipping horizon {h}h — only one class in target")
+                continue
+        
+            X_df_train, X_val, y_df_train, y_val = train_test_split(
+                X, y, test_size=0.2, random_state=42, stratify=y
+            )
 
     pipe.fit(X_train, y_train)
 
