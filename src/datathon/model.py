@@ -88,6 +88,7 @@ def train_eval_save(
     features: list[str],
     horizons: list[int],
     model_path: str,
+    mode: str,
     random_state: int = 42,
     test_size: float = 0.2,
 ) -> dict[int, dict[str, float]]:
