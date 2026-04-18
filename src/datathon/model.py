@@ -12,7 +12,7 @@ from sklearn.model_selection import train_test_split
 from .metrics import WiDS_metrics
 
 
-def make_model(random_state: int = 42) -> LGBMClassifier:
+def make_model(model, random_state: int = 42) -> model:
     return LGBMClassifier(
         n_estimators=80,
         learning_rate=0.05,
@@ -38,7 +38,7 @@ def make_model(random_state: int = 42) -> LGBMClassifier:
         reg_alpha=0.1,
         reg_lambda=1.0,
         n_estimators=800,
-        random_state=SEED,
+        random_state=random_state,
         verbosity=0,
         n_jobs=-1,
         tree_method='gpu_hist' if USE_GPU else 'hist',
