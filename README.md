@@ -16,7 +16,7 @@ pip install -e ".[data]"
 python scripts/download_data.py
 
 pip install -e .
-ctr-train --csv data/raw/train.csv --model lgbm --model-path models/lgbm.joblib
+lgbm-train --csv data/train/train.csv --model lgbm --model-path models/lgbm.joblib
 
 ```
 
