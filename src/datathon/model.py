@@ -32,7 +32,6 @@ def build_pipeline(
         verbose=-1
     )
 
-    model.fit(X_df_train, y_df_train, eval_set=[(X_val, y_val)])
 
     # Calibrate
     cal_model = CalibratedClassifierCV(model, method='isotonic', cv=3)
