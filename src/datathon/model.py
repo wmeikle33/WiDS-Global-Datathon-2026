@@ -70,6 +70,7 @@ def train_eval_save(
 ) -> dict[str, float]:
 
     pipe = build_pipeline(X, model_name=model_name, random_state=random_state)
+    metrics: dict[str, float] = {}
 
     stratify = y if y.nunique() <= 20 else None
 
@@ -91,9 +92,10 @@ def train_eval_save(
             X, y, test_size=0.2, random_state=42, stratify=y
 
          pipe.fit(X_train, y_train)
+
+        metrics = WiDS_metrics(y_val, pos_prob)
         )
 
-    metrics: dict[str, float] = {}
 
     Path(model_path).parent.mkdir(parents=True, exist_ok=True)
     dump(pipe, model_path)
