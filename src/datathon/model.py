@@ -12,7 +12,7 @@ from .metrics import WiDs_metrics
 
 def build_pipeline(
     X: pd.DataFrame,
-    model_name: str = "lgbn",
+    model_name: str = "lgbm",
     random_state: int = 42,
 ) -> Pipeline:
     preprocessor = auto_preprocess(X)
@@ -57,7 +57,7 @@ def build_pipeline(
     return Pipeline(
         steps=[
             ("prep", preprocessor),
-            ("clf", classifier),
+            ("lgbm", classifier),
         ]
     )
 
