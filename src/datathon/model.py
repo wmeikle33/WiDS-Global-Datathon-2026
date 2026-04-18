@@ -5,7 +5,7 @@ from joblib import dump, load
 from sklearn.metrics import log_loss, roc_auc_score
 from sklearn.model_selection import train_test_split
 from sklearn.pipeline import Pipeline
-from .features import auto_preprocess, split_features_label
+from .features import split_features_label
 from .metrics import WiDS_metrics
 
 
@@ -14,7 +14,6 @@ def build_pipeline(
     model_name: str = "lgbm",
     random_state: int = 42,
 ) -> Pipeline:
-    preprocessor = auto_preprocess(X)
     cal_models = {}
     val_score = {}
     
