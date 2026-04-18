@@ -28,6 +28,22 @@ def make_model(random_state: int = 42) -> LGBMClassifier:
         verbose=-1,
     )
 
+    return XGBClassifier(
+        objective='binary:logistic',
+        learning_rate=0.035,
+        max_depth=3,
+        min_child_weight=25,
+        subsample=0.80,
+        colsample_bytree=0.70,
+        reg_alpha=0.1,
+        reg_lambda=1.0,
+        n_estimators=800,
+        random_state=SEED,
+        verbosity=0,
+        n_jobs=-1,
+        tree_method='gpu_hist' if USE_GPU else 'hist',
+        eval_metric='logloss',
+    )
 
 def train_one_horizon(
     df: pd.DataFrame,
