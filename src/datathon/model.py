@@ -88,7 +88,7 @@ def train_eval_save(
         X_df_train, X_val, y_df_train, y_val = train_test_split(
             X, y, test_size=0.2, random_state=42, stratify=y
 
-         pipe.fit(X_train, y_train)
+        pipe.fit(X_train, y_train)
 
         metrics = WiDS_metrics(y_val, pos_prob)
         )
