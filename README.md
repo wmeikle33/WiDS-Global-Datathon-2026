@@ -15,7 +15,6 @@ source .venv/bin/activate
 pip install -e ".[data]"
 python scripts/download_data.py
 
-```bash
 pip install -e .
 ctr-train --csv data/raw/train.csv --model lgbm --model-path models/lgbm.joblib
 
