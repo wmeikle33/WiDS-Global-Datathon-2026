@@ -8,8 +8,8 @@ This competition turns that operational need into a survival analysis challenge.
 
 ```
 
-git clone https://github.com/wmeikle33/Click-Through-Rate-Prediction.git
-cd Click-Through-Rate-Prediction
+git clone https://github.com/wmeikle33/WiDS-Global-Datathon-2026.git
+cd WiDS-Global-Datathon-2026
 python -m venv .venv
 source .venv/bin/activate
 pip install -e ".[data]"
