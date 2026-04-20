@@ -28,12 +28,6 @@ def main():
             continue
         
         preds[h] = models[h].predict_proba(test[features])[:, 1]
-        if args.id_col in X.columns:
-            out = pd.DataFrame({args.id_col: X[args.id_col], h : preds[h]})
-        else:
-            out = pd.DataFrame({h: preds[h]})
-    save_csv(out, args.output)
-    print(f"Saved predictions to: {args.output}")
 
 
 if __name__ == "__main__":
