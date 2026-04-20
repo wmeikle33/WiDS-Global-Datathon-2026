@@ -19,6 +19,21 @@ def main():
 
     model = load(args.model)
     X = load_csv(args.input)
+    preds = {}
+    skipped = []
+    
+    for h in horizons:
+        if h not in models:
+            print(f"Skipping horizon {h}h — no model trained (insufficient data or single class)")
+            skipped.append(h)
+            continue
+        
+        preds[h] = models[h].predict_proba(test[features])[:, 1]
+        print(f"Horizon {h}h → predictions generated, shape: {preds[h].shape}")
+    
+    print(f"\nPredictions generated for: {list(preds.keys())}")
+    if skipped:
+        print(f"Skipped horizons (no model): {skipped}")
 
     save_csv(out, args.output)
     print(f"Saved predictions to: {args.output}")
