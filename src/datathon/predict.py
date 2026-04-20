@@ -10,7 +10,7 @@ def parse_args():
     ap.add_argument("--model", default="models/model.joblib")
     ap.add_argument("--input", required=True, help="CSV with feature columns")
     ap.add_argument("--output", default="predictions.csv")
-    ap.add_argument("--id-col", default="id", help="ID column for submission output")
+    ap.add_argument("--id-col", default="event_id", help="ID column for submission output")
     return ap.parse_args()
 
 
@@ -24,21 +24,14 @@ def main():
     
     for h in horizons:
         if h not in models:
-            print(f"Skipping horizon {h}h — no model trained (insufficient data or single class)")
             skipped.append(h)
             continue
         
         preds[h] = models[h].predict_proba(test[features])[:, 1]
         if args.id_col in X.columns:
-            out = pd.DataFrame({args.id_col: X[args.id_col], "preds": preds[h]})
+            out = pd.DataFrame({args.id_col: X[args.id_col], h : preds[h]})
         else:
-            out = pd.DataFrame({"preds": preds[h]})
-
-        print(f"Horizon {h}h → predictions generated, shape: {preds[h].shape}")
-    
-    print(f"\nPredictions generated for: {list(preds.keys())}")
-    if skipped:
-        print(f"Skipped horizons (no model): {skipped}")
+            out = pd.DataFrame({h: preds[h]})
     save_csv(out, args.output)
     print(f"Saved predictions to: {args.output}")
 
