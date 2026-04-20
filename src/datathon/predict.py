@@ -29,12 +29,16 @@ def main():
             continue
         
         preds[h] = models[h].predict_proba(test[features])[:, 1]
+        if args.id_col in X.columns:
+            out = pd.DataFrame({args.id_col: X[args.id_col], "preds": preds[h]})
+        else:
+            out = pd.DataFrame({"preds": preds[h]})
+
         print(f"Horizon {h}h → predictions generated, shape: {preds[h].shape}")
     
     print(f"\nPredictions generated for: {list(preds.keys())}")
     if skipped:
         print(f"Skipped horizons (no model): {skipped}")
-
     save_csv(out, args.output)
     print(f"Saved predictions to: {args.output}")
 
